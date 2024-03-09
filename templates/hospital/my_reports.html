@@ -1,0 +1,51 @@
+{% extends 'hospital/patient_base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+<h2>Click to download reports</h2>
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Patient</h6>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+          <th>Patient_id</th>
+          <th>Reports</th>
+        </tr>
+      </thead>
+      {% for p in patient %}
+      <tr>
+        <td> {{p.patientId}}</td>
+        <!-- <td><img class="btn btn-primary btn-xs" href="{% static p.documents.url %}" download><span class="glyphicon glyphicon-edit"></span></img></td> -->
+
+        <td><a href="{% static p.documents.url %}" download><img src="{% static p.documents.url %}" alt="Profile Pic" height="40px" width="40px" download /></a> </td>
+    
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+
+{% endblock content %}
